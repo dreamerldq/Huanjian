@@ -1,12 +1,12 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
-import './App.css';
-import registerServiceWorker from './registerServiceWorker';
+import  { render} from 'mirrorx'
+import Counter from './Counter'
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root') as HTMLElement
-);
-registerServiceWorker();
+
+
+const App = () =>{
+  return <Counter></Counter>
+}
+
+// 启动 app，render 方法是加强版的 ReactDOM.render
+render(<App/>, document.getElementById('root'))
