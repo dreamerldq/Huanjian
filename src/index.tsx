@@ -1,13 +1,17 @@
 import * as React from 'react';
 import { render, Router, Route } from 'mirrorx'
 import Counter from './Counter'
-
-
+import MainIndex from './MainIndex'
+import './index.css'
 
 const App = () => {
   return (
     <Router>
+      <div>
+      <Route path="/" component={MainIndex} />
       <Route path="/counter" component={Counter} />
+      </div>
+     
     </Router>
   )
 }
