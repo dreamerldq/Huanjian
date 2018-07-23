@@ -1,12 +1,16 @@
 import * as React from 'react';
-import  { render} from 'mirrorx'
+import { render, Router, Route } from 'mirrorx'
 import Counter from './Counter'
 
 
 
-const App = () =>{
-  return <Counter></Counter>
+const App = () => {
+  return (
+    <Router>
+      <Route path="/counter" component={Counter} />
+    </Router>
+  )
 }
 
 // 启动 app，render 方法是加强版的 ReactDOM.render
-render(<App/>, document.getElementById('root'))
+render(<App />, document.getElementById('root'))
