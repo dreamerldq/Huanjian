@@ -11,6 +11,7 @@
     "object-literal-sort-keys": false,
     "jsx-no-lambda": false,
     "no-any": false,
-    "jsx-self-close": false
+    "jsx-self-close": false,
+    "no-console": false
   }
 }

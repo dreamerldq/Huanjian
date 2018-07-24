@@ -19,11 +19,21 @@ mirror.model({
     }
   })
 interface IProps{
-    count:number
+    count:number,
+    match: any
 }
 class Counter extends React.Component<IProps, {}>{
     constructor(props: IProps){
         super(props)
+    }
+   public componentDidMount(){
+      const {props} = this
+      console.log("PROPS", props)
+      if(props.match.path === '/counter'){
+        setInterval(() => {
+          actions.counter.increment()
+        },1000)
+      }
     }
    public render(){
         const {props} = this
