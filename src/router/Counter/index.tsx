@@ -22,18 +22,26 @@ interface IProps{
     count:number,
     match: any
 }
-class Counter extends React.Component<IProps, {}>{
+interface IState{
+  timer: any
+}
+class Counter extends React.Component<IProps, IState >{
     constructor(props: IProps){
         super(props)
     }
    public componentDidMount(){
       const {props} = this
-      console.log("PROPS", props)
       if(props.match.path === '/counter'){
-        setInterval(() => {
+      const timer =   setInterval(() => {
           actions.counter.increment()
         },1000)
+        this.setState({
+          timer
+        })
       }
+    }
+    public componentWillUnmount(){
+      clearInterval(this.state.timer)
     }
    public render(){
         const {props} = this

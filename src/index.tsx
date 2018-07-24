@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { render, Router, Route } from 'mirrorx'
-import Counter from './Counter'
-import MainIndex from './MainIndex'
+import Counter from './router/Counter'
+import MainIndex from './router/MainIndex'
 import './index.css'
+import Header from './component/Header/index'
 
 const App = () => {
   return (
     <Router>
-      <div>
-      <Route path="/" component={MainIndex} />
+      <React.Fragment>
+        <Header/>
+      <Route path="/" exact={true} component={MainIndex} />
       <Route path="/counter" component={Counter} />
-      </div>
+      </React.Fragment>
      
     </Router>
   )
 }
-
-// 启动 app，render 方法是加强版的 ReactDOM.render
 render(<App />, document.getElementById('root'))
