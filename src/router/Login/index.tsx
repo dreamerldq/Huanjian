@@ -13,7 +13,8 @@ interface IState{
 }
 interface IProps{
     form:any,
-    auth: boolean
+    auth: boolean,
+    location: any
 }
 class Login extends React.Component<IProps, IState> {
    public handleSubmit = (e:any) => {
@@ -31,11 +32,13 @@ class Login extends React.Component<IProps, IState> {
     }
   
    public render() {
+    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    console.log("路由参数", from)
       const { getFieldDecorator } = this.props.form;
       const { auth } = this.props
       return (
           auth === true ? 
-          <Redirect to="/"/>
+          <Redirect to={from}/>
           :
         <Form onSubmit={this.handleSubmit} className="login_container">
             <div className="form_container">

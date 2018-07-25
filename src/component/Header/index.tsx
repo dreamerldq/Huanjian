@@ -58,6 +58,9 @@ class AppHeader extends React.Component<IProps, IState>{
                         <Item key="counter">
                             计数器
                         </Item>
+                        <Item key="protected">
+                            权限界面
+                        </Item>
                     </Menu>
 
                 </Header>
