@@ -9,7 +9,12 @@ const { Item } = Menu
 interface IState {
     current: string
 }
-class AppHeader extends React.Component<any, IState>{
+interface IProps{
+    match: any,
+    location: any,
+    history: any
+}
+class AppHeader extends React.Component<IProps, IState>{
     constructor(props: any) {
         super(props)
         this.state = {
@@ -27,8 +32,12 @@ class AppHeader extends React.Component<any, IState>{
         });
     }
     public render() {
+        const { location}  = this.props
         return (
-            <React.Fragment>
+           location.pathname === '/login' ?
+            null
+           :
+           <React.Fragment>
                 <Header className="header">
                     <Menu
                         className="header_menu"
@@ -53,6 +62,7 @@ class AppHeader extends React.Component<any, IState>{
 
                 </Header>
             </React.Fragment>
+            
         )
     }
 
