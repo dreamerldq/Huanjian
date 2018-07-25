@@ -5,6 +5,21 @@ import MainIndex from './router/MainIndex'
 import './index.css'
 import Header from './component/Header/index'
 import Login from './router/Login'
+import mirror from 'mirrorx'
+interface IState{
+  auth: boolean
+}
+mirror.model({
+    name: 'app',
+    initialState: {
+      auth: false
+    },
+    reducers: {
+      authSwitch(state: IState ){return {...state, auth: !state.auth}}
+    },
+    effects: {
+    }
+  })
 const RouteHeader = withRouter(Header)
 const App = () => {
   return (

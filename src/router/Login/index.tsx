@@ -1,13 +1,19 @@
 import * as React from 'react'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import './index.css'
+import {actions, connect,Redirect} from 'mirrorx'
 
+const user = {
+    username: 'lidanqiu',
+    password: '123'
+}
 const FormItem = Form.Item
 interface IState{
     current: string
 }
 interface IProps{
-    form:any
+    form:any,
+    auth: boolean
 }
 class Login extends React.Component<IProps, IState> {
    public handleSubmit = (e:any) => {
@@ -15,13 +21,22 @@ class Login extends React.Component<IProps, IState> {
       this.props.form.validateFields((err:any, values:any) => {
         if (!err) {
           console.log('Received values of form: ', values);
+          if(values.password === user.password && values.userName === user.username){
+            actions.app.authSwitch()
+          }else{
+              console.log("密码或者用户名错误")
+          }
         }
       });
     }
   
    public render() {
       const { getFieldDecorator } = this.props.form;
+      const { auth } = this.props
       return (
+          auth === true ? 
+          <Redirect to="/"/>
+          :
         <Form onSubmit={this.handleSubmit} className="login_container">
             <div className="form_container">
             <FormItem>
@@ -55,5 +70,7 @@ class Login extends React.Component<IProps, IState> {
       );
     }
   }
-  
-export default Form.create()(Login)
+  const mapStateToProps = (state: any) => {
+    return {auth: state.app.auth}
+  }
+export default Form.create()(connect(mapStateToProps)(Login))
